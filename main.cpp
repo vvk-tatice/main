@@ -52,27 +52,25 @@ int main() {
         return a.getSurname() < b.getSurname();
     });
 
-    // Display formatted results showing both Average and Median calculation choices
-    std::cout << std::left << std::setw(20) << "Name" 
-              << std::setw(20) << "Surname" 
+ // Display formatted results showing both Average and Median calculation choices
+    std::cout << std::left << std::setw(15) << "Name" 
+              << std::setw(15) << "Surname" 
               << std::setw(15) << "Final (Avg.)" 
-              << "| " << std::setw(15) << "Final (Med.)" << "\n";
-    std::cout << "-----------------------------------------------------------------------\n";
+              << " | " << std::setw(15) << "Final (Med.)" << "\n";
+    std::cout << "-------------------------------------------------------------------\n";
 
-    for (auto& student : students) {
-        // Create copies to calculate and display both metrics
+    for (const auto& student : students) {
         Person studentAvg = student;
         Person studentMed = student;
 
-        studentAvg.calculateFinalGrade(false); // Calculate using Average
-        studentMed.calculateFinalGrade(true);  // Calculate using Median
+        studentAvg.calculateFinalGrade(false); // Calculate using Average[cite: 2]
+        studentMed.calculateFinalGrade(true);  // Calculate using Median[cite: 2]
 
-        // Print the output table row
-        std::cout << studentAvg << " | ";
-        
-        // Print the median version value 
-        // (Assuming you output via custom logic or getters, or you can print finalGrade directly)
-        std::cout << "\n";
+        // Print Name, Surname, and Average Final Grade using the overloaded operator
+        std::cout << studentAvg; 
+
+        // Print the Separator and the Median Final Grade with 2 decimal places
+        std::cout << " | " << std::fixed << std::setprecision(2) << studentMed.getFinalGrade() << "\n";
     }
 
     return 0;
